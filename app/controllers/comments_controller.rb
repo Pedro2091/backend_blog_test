@@ -2,38 +2,40 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show update destroy ]
 
   # GET /comments
+  # GET /comments.json
   def index
     @comments = Comment.all
-
-    render json: @comments
   end
 
   # GET /comments/1
+  # GET /comments/1.json
   def show
-    render json: @comment
   end
 
   # POST /comments
+  # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      render json: @comment, status: :created, location: @comment
+      render :show, status: :created, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_content
     end
   end
 
   # PATCH/PUT /comments/1
+  # PATCH/PUT /comments/1.json
   def update
     if @comment.update(comment_params)
-      render json: @comment
+      render :show, status: :ok, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_content
     end
   end
 
   # DELETE /comments/1
+  # DELETE /comments/1.json
   def destroy
     @comment.destroy!
   end
@@ -46,6 +48,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.expect(comment: [ :name, :content, :post_id ])
+      params.expect(comment: [ :name, :content, :post_id_id ])
     end
 end
