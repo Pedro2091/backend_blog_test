@@ -1,4 +1,6 @@
-class PostsController < ApplicationController
+class PostsController < ApplicationController  
+  include Authenticable
+  skip_before_action :authenticate_request, only: [:index, :show]
   before_action :set_post, only: %i[ show update destroy ]
 
   # GET /posts
@@ -15,6 +17,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    include Authenticable
+
     @post = Post.new(post_params)
 
     if @post.save

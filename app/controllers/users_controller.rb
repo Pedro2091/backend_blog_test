@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Authenticable
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users

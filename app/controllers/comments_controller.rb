@@ -1,19 +1,19 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show update destroy ]
 
-  # GET /comments
-  # GET /comments.json
+  # GET post/1/comments
+  # GET post/1/comments.json
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+  # GET post/1/comments/1
+  # GET post/1/comments/1.json
   def show
   end
 
-  # POST /comments
-  # POST /comments.json
+  # POST post/1/comments
+  # POST post/1/comments.json
   def create
     @comment = Comment.new(comment_params)
 
@@ -24,8 +24,8 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
+  # PATCH/PUT post/1/comments/1
+  # PATCH/PUT post/1/comments/1.json
   def update
     if @comment.update(comment_params)
       render :show, status: :ok, location: @comment
@@ -34,8 +34,8 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
+  # DELETE post/1/comments/1
+  # DELETE post/1/comments/1.json
   def destroy
     @comment.destroy!
   end
