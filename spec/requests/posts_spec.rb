@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.describe "Posts", type: :request do
   let(:user) { create(:user) }
   let(:token) { JsonWebToken.encode(user_id: user.id) }
-  let(:headers) {{ 'Authorization' => "Bearer #{token}" }}
+  let(:headers) { { 'Authorization' => "Bearer #{token}" } }
 
   describe "POST /posts" do
     context "com autenticação" do
       it "cria um post" do
         post '/posts', params: { post: { titulo: 'Teste', texto: 'Conteúdo' } }
         expect(response).to have_http_status(:created)
-      end 
+      end
     end
 
     context "sem autenticação" do
       it "retorna 401" do
-        post '/posts', params: { post: {titulo: 'Teste', texto: 'Conteúdo' } }
+        post '/posts', params: { post: { titulo: 'Teste', texto: 'Conteúdo' } }
         expect(response).to have_http_status(:unauthorized)
       end
     end

@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comentarios, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  validates :titulo, presence: true
+  validates :title, presence: true
 end
