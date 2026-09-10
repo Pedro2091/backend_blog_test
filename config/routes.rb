@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  post '/login', to: 'auth#login'
+  post "/login", to: "auth#login"
+  post "/register", to: "auth#register"
 
-  resources :users, only: [:index, :show, :create, :update, :destroy]
-  resources :posts do 
-    resources :comments, only: [:index, :show, :create, :update, :destroy]
+  resources :users, only: [ :index, :show, :create, :update, :destroy ]
+  resources :posts do
+    resources :comments, only: [ :index, :show, :create, :update, :destroy ]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
