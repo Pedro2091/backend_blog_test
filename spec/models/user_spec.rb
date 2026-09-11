@@ -21,15 +21,20 @@ RSpec.describe User, type: :model do
     expect(user).to be_invalid
   end
 
-  # it "is invalid with a invalid email" do
-  #   user = User.create!(name: "Ana", email: "stringwhatever", password: "123456")
-  #   expect(user).to be_invalid
-  # end
+  it "is valid with a properly formatted email" do
+    user = User.new(name: "Ana", email: "ana@exemplo.com", password: "123456")
+    expect(user).to be_valid
+  end
 
   it "is invalid with email duplicated" do
     User.create!(name: "Ana", email: "ana@ex.com", password: "123456")
     user2 = User.new(name: "Bia", email: "ana@ex.com", password: "654321")
     expect(user2).to be_invalid
+  end
+
+  it "is invalid with a invalid email" do
+    user = User.new(name: "Ana", email: "stringwhatever", password: "123456")
+    expect(user).to be_invalid
   end
 
   it "is password save in hash" do

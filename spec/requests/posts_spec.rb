@@ -9,25 +9,24 @@ RSpec.describe "Posts", type: :request do
     { title: '', content: '' }
   }
 
-  let(:valid_headers) {
+  let!(:valid_headers) {
     token = JsonWebToken.encode(user_id: user.id)
     { "Authorization" => "Bearer #{token}" }
-  }
-
-  let(:user) {
-    User.create!(name: "User Test", email: "teste@teste.com", password: "Teste123", password_confirmation: "Teste123")
   }
 
   let(:invalid_headers) {
     { "Authorization" => "Bearer Invalid123" }
   }
 
+  let(:user) {
+    User.create!(name: "User Test", email: "teste@teste.com", password: "Teste123", password_confirmation: "Teste123")
+  }
 
   describe "GET /posts" do
     it "renders a list of posts" do
       post = Post.create! valid_attributes
       get posts_url, as: :json
-      expect(response).to be_successful
+      expect(response).to have_http_status(:ok)
       expect(response.parsed_body).to be_an(Array)
       expect(response.parsed_body).to include(a_hash_including("id" => post.id))
     end
@@ -64,6 +63,7 @@ RSpec.describe "Posts", type: :request do
                 params: { post: valid_attributes }, headers: valid_headers, as: :json
           }.to change(Post, :count).by(1)
           expect(Post.last.user).to eq(user)
+          expect(response).to have_http_status(:created)
         end
 
         it "renders a JSON response with the new post" do

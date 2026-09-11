@@ -86,6 +86,7 @@ RSpec.describe "/users", type: :request do
           post users_url,
             params: { user: valid_attributes }, headers: valid_headers, as: :json
           }.to change(User, :count).by(1)
+          expect(response).to have_http_status(:created)
         end
 
         it "renders a JSON response with the new user" do

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :index, :show, :create, :update, :destroy ]
   resources :posts do
-    resources :comments, only: [ :index, :show, :create, :update, :destroy ]
+    resources :comments, only: [ :index, :create ]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
