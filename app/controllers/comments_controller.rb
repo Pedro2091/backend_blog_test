@@ -4,8 +4,6 @@ class CommentsController < ApplicationController
   # GET post/1/comments
   # GET post/1/comments.json
   def index
-    puts("post_comments_url(@post): #{post_comments_url(@post)}")
-    puts("Post: #{@post.inspect}")
     @comments = @post.comments
   end
 

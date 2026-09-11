@@ -8,9 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-user = User.create!(name: "User 1", email: "test@gmail.com")
-
-Rails.logger.info "O valor da variável é: #{@user}"
+user = User.create!(name: "User 1", email: "test@gmail.com", password: "123456", password_confirmation: "123456")
 
 5.times do |i|
   post = Post.create!(title: "Post ##{i}", content: "A post.", user_id: user.id)

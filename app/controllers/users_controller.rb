@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include Authenticable
+   skip_before_action :authenticate_request, only: [ :index, :show ]
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
