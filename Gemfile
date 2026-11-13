@@ -55,4 +55,4 @@ group :development, :test do
   gem "ruby-lsp-rspec"
 end
 
-gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]
+gem "rspec-rails", "~> 8.1", groups: [ :development, :test ]
